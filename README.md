@@ -1,5 +1,5 @@
-Gene by Gene fork of ProjectMonitor Project to Monitor our TeamCity CI
-======================================================================
+Gene by Gene fork of ProjectMonitor - Monitor for TeamCity CI
+=============================================================
 
 
 Description [![Build Status](https://secure.travis-ci.org/pivotal/projectmonitor.png?branch=master)](http://travis-ci.org/pivotal/projectmonitor) [![Code Climate](https://codeclimate.com/github/pivotal/projectmonitor.png)](https://codeclimate.com/github/pivotal/projectmonitor)
