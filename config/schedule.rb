@@ -10,6 +10,6 @@ every 3.minutes do
 end
 
 every 1.minute do
-  rake "dependency:fetch_statuses"
+  rake "projectmonitor:fetch_statuses"
   rake "trim_payload_log_entries"
 end
