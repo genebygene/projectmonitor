@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+ruby '2.1.2'
 
 gem 'acts-as-taggable-on', '~> 3.4.2'
 gem 'airbrake', '~> 4.1.0'
@@ -68,18 +68,23 @@ group :test, :development do
   gem 'jshint_on_rails'
   gem 'rspec-rails', '~> 3.1.0'
   gem 'shoulda-matchers'
-  gem 'capybara', '~> 2.4.4'
-  gem 'jasmine'
-  gem 'jasmine-rails'
-  gem 'selenium-webdriver', '>= 2.25.0' # NOTE: selenium-webdriver >= 2.25.0 is needed for the latest Firefox
-  gem 'factory_girl_rails', '~> 4.5.0'
-  gem 'guard-coffeescript'
-  gem 'database_cleaner'
-  gem 'capybara-webkit'
+  # gem 'capybara', '~> 2.4.4'
+  # gem 'jasmine'
+  # gem 'jasmine-rails'
+  # gem 'selenium-webdriver', '>= 2.25.0' # NOTE: selenium-webdriver >= 2.25.0 is needed for the latest Firefox
+  # gem 'factory_girl_rails', '~> 4.5.0'
+  # gem 'guard-coffeescript'
+  # gem 'database_cleaner'
+  # gem 'capybara-webkit'
   gem 'pry-nav'
   gem 'pry-rails'
   gem 'pry'
   gem 'vagrant'
   gem 'timecop'
-  gem 'did_you_mean'
+  # gem 'did_you_mean'
+
+  gem 'capistrano',  '3.3.5'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-rvm'
+
 end
