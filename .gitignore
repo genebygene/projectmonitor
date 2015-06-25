@@ -4,10 +4,6 @@ zeus.json
 .DS_Store
 *.iml
 *.ipr
-config/database.yml
-config/auth.yml
-config/ci.yml
-config/settings.local.yml
 .bundle
 db/*.sqlite3
 log/*.log
