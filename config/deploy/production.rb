@@ -9,6 +9,7 @@
 # role :db,  %w{deploy@example.com}
 
 set :rails_env, 'production'
+set :rvm_type, :system
 
 # Extended Server Syntax
 # ======================
