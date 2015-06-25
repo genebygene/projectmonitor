@@ -84,6 +84,7 @@ group :test, :development do
   # gem 'did_you_mean'
 
   gem 'capistrano',  '3.3.5'
+  gem 'capistrano-bundler'
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano-rvm'
 
