@@ -80,7 +80,7 @@ class TeamCityXmlPayload < Payload
     end
 
     if match
-      results.map{|k,v| "#{v}#{status_map[k]}"}.join(' ')
+      results.map{|k,v| "#{v} #{status_map[k]}"}.join(', ')
     else
       nil
     end
