@@ -25,6 +25,14 @@ class TeamCityXmlPayload < Payload
     Array.wrap(convert_xml_content!(raw_content, true).css('build'))
   end
 
+  def convert_tests_content!(raw_content)
+    if raw_content.present?
+      Array.wrap(convert_xml_content!(raw_content, true).css('testOccurrence'))
+    else
+      []
+    end
+  end
+
   def parse_success(content)
     content.attribute('status').value == 'SUCCESS'
   end
@@ -39,6 +47,43 @@ class TeamCityXmlPayload < Payload
 
   def parse_published_at(content)
     parse_start_date_attribute(content.attribute('startDate'))
+  end
+
+  def parse_tests_status(content)
+
+    build_id      = parse_build_id(content)
+    test_build_id = nil
+    match         = false
+
+    status_map = {
+      'SUCCESS' => 'p',
+      'FAILURE' => 'f',
+      'UNKNOWN' => 's'
+    }
+
+    results = {}
+    tests_status_content.each do |test|
+
+      unless test_build_id
+        id = test.attributes['id'].value
+        test_build_id = id.match(/build:\(id:(\d+)\)/).captures.first
+        break unless test_build_id == build_id
+        match = true
+      end
+
+      status = test.attributes['status'].value
+      if results.key?(status)
+        results[status] += 1
+      else
+        results[status] = 1
+      end
+    end
+
+    if match
+      results.map{|k,v| "#{v}#{status_map[k]}"}.join(' ')
+    else
+      nil
+    end
   end
 
   def parse_start_date_attribute(start_date_attribute)

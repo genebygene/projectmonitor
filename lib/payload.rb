@@ -13,12 +13,16 @@ class Payload
   def each_status
     status_content.each do |content|
       next if !content_ready?(content)
-      yield ProjectStatus.new(
+
+      project_status = ProjectStatus.new(
         success: parse_success(content),
         url: parse_url(content),
         build_id: parse_build_id(content),
-        published_at: parse_published_at(content)
+        published_at: parse_published_at(content),
+        tests_status: parse_tests_status(content)
       )
+
+      yield project_status
     end
   end
 
@@ -44,6 +48,14 @@ class Payload
     end
   end
 
+  def tests_status_content=(content)
+    begin
+      @tests_status_content = convert_tests_content!(content)
+    rescue InvalidContentException => e
+      log_error e
+    end
+  end
+
   def status_is_processable?
     has_status_content? && !!processable
   end
@@ -62,6 +74,10 @@ class Payload
 
   def has_build_status_content?
     build_status_content.present?
+  end
+
+  def has_tests_status_content?
+    tests_status_content.present?
   end
 
   def convert_content!(raw_content)
@@ -95,6 +111,10 @@ class Payload
     convert_content!(raw_content)
   end
 
+  def convert_tests_content!(raw_content)
+    convert_content!(raw_content)
+  end
+
   def log_error(e)
     self.error_type = e.class.to_s
     self.error_text = e.message
@@ -107,5 +127,5 @@ class Payload
   end
 
   attr_accessor :processable, :build_processable
-  attr_reader :status_content, :build_status_content
+  attr_reader :status_content, :build_status_content, :tests_status_content
 end

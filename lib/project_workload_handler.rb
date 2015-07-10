@@ -9,13 +9,15 @@ class ProjectWorkloadHandler
   def workload_created(workload)
     workload.add_job(:feed_url, project.feed_url)
     workload.add_job(:build_status_url, project.build_status_url)
+    workload.add_job(:build_tests_status_url, project.build_tests_status_url(project.latest_status.build_id)) if project.latest_status
   end
 
   def workload_complete(workload)
     status_content = workload.recall(:feed_url)
     build_status_content = workload.recall(:build_status_url)
+    tests_status_content = workload.recall(:build_tests_status_url)
 
-    update_ci_status(workload, status_content, build_status_content)
+    update_ci_status(workload, status_content, build_status_content, tests_status_content)
   end
 
   def workload_failed(workload, e)
@@ -28,11 +30,12 @@ class ProjectWorkloadHandler
 
 private
 
-  def update_ci_status(workload, status_content, build_status_content = nil)
+  def update_ci_status(workload, status_content, build_status_content = nil, tests_status_content = nil)
     payload = project.fetch_payload
 
     payload.status_content = status_content
     payload.build_status_content = build_status_content if project.build_status_url
+    payload.tests_status_content = tests_status_content
 
     payload_processor = PayloadProcessor.new(project_status_updater: StatusUpdater.new)
     log = payload_processor.process_payload(project: project, payload: payload)

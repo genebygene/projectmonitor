@@ -51,7 +51,7 @@ json.online               project.online?
 json.aggregate_project_id nil
 
 json.build do
-  json.(project, :id, :code, :published_at, :current_build_url)
+  json.(project, :id, :code, :published_at, :current_build_url, :tests_status)
   json.building project.building?
   json.status   project.status_in_words
 

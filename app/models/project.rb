@@ -100,6 +100,14 @@ class Project < ActiveRecord::Base
     raise NotImplementedError, 'Must implement build_status_url in subclasses'
   end
 
+  def build_tests_status_url(build_id)
+    raise NotImplementedError, 'Must implement build_tests_status_url in subclasses'
+  end
+
+  def query_tests_results?
+    false
+  end
+
   def tracker_project_url
     "https://www.pivotaltracker.com/services/v3/projects/#{tracker_project_id}"
   end
@@ -161,6 +169,10 @@ class Project < ActiveRecord::Base
     latest_status.try(:published_at)
   end
 
+  def tests_status
+    latest_status.try(:tests_status)
+  end
+
   def accept_mime_types
     nil
   end
@@ -181,7 +193,7 @@ class Project < ActiveRecord::Base
   def webhook_payload
     fetch_payload
   end
-  
+
   private
 
   def trim_urls_and_tokens

@@ -14,4 +14,11 @@ class StatusUpdater
       ProjectStatus.delete_all(['project_id = ? AND id not in (?)', project.id, keepers.map(&:id)]) if keepers.any?
     end
   end
+
+  def update_project_status(project, status)
+    ps = project.statuses.where(build_id:status.build_id).first
+    if ps
+      ps.update_attributes(:tests_status => status.tests_status)
+    end
+  end
 end

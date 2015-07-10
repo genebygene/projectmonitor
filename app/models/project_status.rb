@@ -5,7 +5,8 @@ class ProjectStatus < ActiveRecord::Base
   validates :build_id, presence: true
 
   scope :recent, -> {
-    where.not(build_id: nil).order('published_at DESC, build_id DESC')
+    where.not(build_id: nil).order('build_id DESC')
+    # where.not(build_id: nil).order('published_at DESC, build_id DESC')
   }
 
   scope :green, -> {

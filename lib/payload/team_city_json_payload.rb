@@ -43,4 +43,8 @@ class TeamCityJsonPayload < Payload
     Time.now
   end
 
+  def parse_tests_status(content)
+    'Parsed Test Status'
+  end
+
 end
