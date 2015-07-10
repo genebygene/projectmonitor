@@ -10,7 +10,7 @@ class TeamCityRestProject < Project
   end
 
   def build_tests_status_url(build_id)
-    url_with_scheme "#{ci_base_url}/app/rest/testOccurrences?locator=build:#{build_id}"
+    url_with_scheme "#{ci_base_url}/app/rest/testOccurrences?locator=build:#{build_id},count:999999"
   end
 
   def query_tests_results?

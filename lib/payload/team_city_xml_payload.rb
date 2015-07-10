@@ -56,9 +56,9 @@ class TeamCityXmlPayload < Payload
     match         = false
 
     status_map = {
-      'SUCCESS' => 'p',
-      'FAILURE' => 'f',
-      'UNKNOWN' => 's'
+      'SUCCESS' => 'Pass',
+      'FAILURE' => 'Fail',
+      'UNKNOWN' => 'Skip'
     }
 
     results = {}
