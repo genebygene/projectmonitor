@@ -21,6 +21,7 @@
     </div>
     <div>
       <span class="unit-tests"><%= @tests_status %></span>
+      <span class="branch-name"><%= @branch_name %></span>
     </div>
   </aside>
 <% end %>

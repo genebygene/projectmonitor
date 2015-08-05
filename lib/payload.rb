@@ -18,6 +18,7 @@ class Payload
         success: parse_success(content),
         url: parse_url(content),
         build_id: parse_build_id(content),
+        branch_name: parse_branch_name(content),
         published_at: parse_published_at(content),
         tests_status: parse_tests_status(content)
       )

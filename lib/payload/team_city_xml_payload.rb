@@ -49,6 +49,10 @@ class TeamCityXmlPayload < Payload
     parse_start_date_attribute(content.attribute('startDate'))
   end
 
+  def parse_branch_name(content)
+    content.attribute('branchName').value
+  end
+
   def parse_tests_status(content)
 
     build_id      = parse_build_id(content)

@@ -173,6 +173,10 @@ class Project < ActiveRecord::Base
     latest_status.try(:tests_status)
   end
 
+  def branch_name
+    latest_status.try(:branch_name)
+  end
+
   def accept_mime_types
     nil
   end
