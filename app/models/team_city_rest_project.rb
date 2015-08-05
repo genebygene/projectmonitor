@@ -6,7 +6,11 @@ class TeamCityRestProject < Project
   alias_attribute :project_name, :feed_url
 
   def feed_url
-    url_with_scheme "#{ci_base_url}/app/rest/builds?locator=running:all,buildType:(id:#{ci_build_identifier}),personal:false"
+    # Only Master branch
+    # url_with_scheme "#{ci_base_url}/app/rest/builds?locator=running:all,buildType:(id:#{ci_build_identifier}),personal:false"
+
+    # Any branch
+    url_with_scheme "#{ci_base_url}/app/rest/builds?locator=running:all,buildType:(id:#{ci_build_identifier}),personal:false,branch(default:any)"
   end
 
   def build_tests_status_url(build_id)
