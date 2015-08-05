@@ -18,7 +18,7 @@ class StatusUpdater
   def update_project_status(project, status)
     ps = project.statuses.where(build_id:status.build_id).first
     if ps
-      ps.update_attributes(:tests_status => status.tests_status)
+      ps.update_attributes(:tests_status => status.tests_status, :branch_name => status.branch_name)
     end
   end
 end
