@@ -54,6 +54,7 @@ json.build do
   json.(project, :id, :code, :published_at, :current_build_url, :tests_status, :branch_name)
   json.building project.building?
   json.status   project.status_in_words
+  json.tests_status_color project.status.tests_status_color
 
   json.statuses project.statuses.recent do |status|
     json.(status, :success, :url)

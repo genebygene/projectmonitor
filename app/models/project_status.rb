@@ -22,7 +22,13 @@ class ProjectStatus < ActiveRecord::Base
   end
 
   def in_words
-    success? ? 'success' : 'failure'
+    result = success? ? 'success' : 'failure'
+    result = 'warning' if tests_status.to_s.downcase.include? 'skip'
+    result
+  end
+
+  def tests_status_color
+    'RED'
   end
 
 end
