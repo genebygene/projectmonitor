@@ -23,7 +23,7 @@ gem 'omniauth-google-oauth2'
 gem 'pivotal-tracker'
 gem 'rails', '4.0.11'
 gem 'rake'
-gem 'whenever', require: false
+gem 'whenever', :require => false
 gem 'rails-backbone', git: 'https://github.com/codebrew/backbone-rails', tag: 'v1.1.2'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'eco', '~> 1.0.0'
